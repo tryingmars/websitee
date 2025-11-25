@@ -1,5 +1,5 @@
 // API Configuration
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://website-myme.onrender.com/api';
 
 // Get token from localStorage
 const getToken = () => localStorage.getItem('token');
@@ -15,6 +15,7 @@ const apiRequest = async (endpoint, options = {}) => {
     const token = getToken();
 
     const config = {
+        method: options.method || 'GET',
         headers: {
             'Content-Type': 'application/json',
             ...(token && { Authorization: `Bearer ${token}` }),
