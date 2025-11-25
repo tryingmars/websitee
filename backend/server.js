@@ -61,6 +61,19 @@ app.get('/health', (req, res) => {
 // Error handler (must be last)
 app.use(errorHandler);
 
+// ----------------------------------------------------
+// ADD THIS BLOCK FOR RENDER HEALTH CHECK / KEEP-ALIVE
+// ----------------------------------------------------
+
+// Health Check Route: This simple GET route tells monitoring services (like UptimeRobot) 
+// that the server is alive and running successfully (HTTP 200 OK).
+app.get('/status', (req, res) => {
+    // Note: We use 200 status for success
+    res.status(200).send({ message: 'Server is running and ready for API requests.' });
+});
+
+// ----------------------------------------------------
+
 // Database connection
 const connectDB = async () => {
     try {
