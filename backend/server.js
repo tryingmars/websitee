@@ -54,13 +54,8 @@ app.use('/api/blog', blogRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/upload', uploadRoutes);
 
-// Health check route
-app.get('/api/health', (req, res) => {
-    res.json({
-        success: true,
-        message: 'Server is running',
-        timestamp: new Date().toISOString()
-    });
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
 });
 
 // Error handler (must be last)
